@@ -1,4 +1,5 @@
 import React from 'react'
+import { CartWidget } from './CartWidget'
 // import {Link} from 'react-router-dom';
 
 
@@ -16,8 +17,9 @@ export const NavBar = () => {
     const menuStyle = {
         display: "flex",
         flexDirection: "row",
+        justifyContent: "space-evenly",
         color: "rgb(233 231 231)",
-        marginRight:"20px"
+        marginRight: "20px"
     }
     const titleContainerStyle = {
         display: "flex",
@@ -27,21 +29,21 @@ export const NavBar = () => {
 
     const titleStyle = {
         color: "#ed662b",
-        marginTop:"5px",
-        marginLeft:"20px"
+        marginTop: "5px",
+        marginLeft: "20px"
     }
 
-    const menuLinkStyle ={
-        marginLeft:"20px",
+    const menuLinkStyle = {
+        marginLeft: "20px",
         marginTop: "15px"
     }
 
     return (
         <div className="nav-bar" style={navStyle}>
-            
-            <div className="title-container" style = {titleContainerStyle}>
-                <img src = "./Icons/copitas.png" alt = "logo"/>
-                <h1 className="title"  style={titleStyle}>
+
+            <div className="title-container" style={titleContainerStyle}>
+                <img src="./Icons/copitas.png" alt="logo" />
+                <h1 className="title" style={titleStyle}>
                     E-DRINK
                 </h1>
             </div>
@@ -67,6 +69,9 @@ export const NavBar = () => {
                 <div className="menu-container-link">
                     <h3 style={menuLinkStyle}>Snacks y otros</h3>
                 </div>
+            </div>
+            <div className="cart-container" style={{ marginRight: "20px" }} >
+                <CartWidget />
             </div>
         </div>
     )
