@@ -1,0 +1,36 @@
+.nav-bar{
+    background-color: #121a34;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 10px #888888;
+}
+
+.menu-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: rgb(233, 231, 231);
+    margin-right: 20px;
+    &-link{
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+}
+
+.title-container{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.title{
+    color: #ed662b;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.cart-container{
+    margin-right: 20px;
+}

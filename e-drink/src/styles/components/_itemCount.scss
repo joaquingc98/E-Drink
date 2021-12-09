@@ -1,0 +1,25 @@
+.item-counter-container{
+    width: 15vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    p{
+        font-weight: bold;
+    }
+}
+
+.counter-button{
+    height: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.add-button{
+    width: 15vw;
+    &-container{
+        margin-top: 20px;
+    }
+}
