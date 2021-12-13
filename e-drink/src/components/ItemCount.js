@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 export const ItemCount = (props) => {
 
-    let [counter, setCounter] = useState(0)
+    let [counter, setCounter] = useState(1)
 
     const handlePlus = () => {
         if (counter < props.stock) {
@@ -14,7 +14,7 @@ export const ItemCount = (props) => {
     }
 
     const handleMinus = () => {
-        if (counter > 0) {
+        if (counter > 1) {
             setCounter(counter - 1)
         }
     }
@@ -25,7 +25,7 @@ export const ItemCount = (props) => {
             title: 'A beber!',
             text: `Se agregaron ${counter} elementos al carrito`,
           })
-        setCounter(0)
+        setCounter(1)
     }
 
     return (

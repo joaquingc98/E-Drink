@@ -8,7 +8,7 @@ function App() {
     <>
       <NavBar/>
       <ItemListContainer message="Stock maximo: 10 unidades!"/>
-      <ItemCount stock={10}/>
+      {/* <ItemCount stock={10}/> */}
     </>
   );
 }

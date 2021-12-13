@@ -1,9 +1,10 @@
 import React from 'react'
+import { ItemList } from './ItemList'
 
 export const ItemListContainer = (props) => {
     return (
-        <div>
-            <h1>{props.message}</h1>
+        <div className="list-container">
+            <ItemList className="ml-1"/>
         </div>
     )
 }
