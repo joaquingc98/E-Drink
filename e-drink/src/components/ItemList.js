@@ -23,6 +23,9 @@ productListPromise.then((res) => {setProductList(res.default)})
                             title={data.title}
                             pictureURL={data.picture_URL}
                             price={data.price}
+                            brand={data.brand}
+                            country={data.country}
+                            stock={data.stock}
                          />
                     )
                 )

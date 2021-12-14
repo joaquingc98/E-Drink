@@ -1,5 +1,6 @@
 import { Button } from '@mui/material'
 import React from 'react'
+import { ItemDetailContainer } from './ItemDetailContainer'
 
 
 export const Item = (props) => {
@@ -9,11 +10,12 @@ export const Item = (props) => {
             <h1>{props.title}</h1>
             <h2>{`$${props.price}`}</h2>
             <div className="item-button-container">
-                <Button variant="outlined">
+                {/* <Button variant="outlined">
                     <img src="./Icons/cart_icon.png" height="20" className="mr-1"/>
                     Comprar
-                </Button>
+                </Button> */}
             </div>
+            <ItemDetailContainer brand={props.brand} country={props.country} stock={props.stock}/>
         </div>
     )
 }

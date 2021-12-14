@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import Swal from 'sweetalert2'
 
 
 export const ItemCount = (props) => {
 
-    let [counter, setCounter] = useState(1)
+    let [counter, setCounter] = useState(0)
+    const [disableButton, setDisableButton] = useState(true)
+
+    useEffect(() => {
+       if(counter === 0){
+           setDisableButton(true)
+       }else{
+           setDisableButton(false)
+       }
+    }, [counter])
 
     const handlePlus = () => {
         if (counter < props.stock) {
@@ -14,7 +23,7 @@ export const ItemCount = (props) => {
     }
 
     const handleMinus = () => {
-        if (counter > 1) {
+        if (counter > 0) {
             setCounter(counter - 1)
         }
     }
@@ -25,8 +34,10 @@ export const ItemCount = (props) => {
             title: 'A beber!',
             text: `Se agregaron ${counter} elementos al carrito`,
           })
-        setCounter(1)
+        setCounter(0)
     }
+
+
 
     return (
         <>
@@ -36,7 +47,7 @@ export const ItemCount = (props) => {
                 <input type="image" src="./Icons/plusIcon.png" className="counter-button" onClick={handlePlus} />
             </div>
             <div className="add-button-container">
-                <Button className="add-button" variant="outlined" onClick={handleAdd}>Agregar al carrito!</Button>
+                <Button disabled={disableButton} className="add-button" variant="outlined" onClick={handleAdd}>Agregar al carrito!</Button>
             </div>
         </>
     )
