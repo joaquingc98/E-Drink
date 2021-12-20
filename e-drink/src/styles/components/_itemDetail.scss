@@ -1,0 +1,43 @@
+.detail-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 20%;
+    top: 15% ;
+}
+.item-detail{
+    display: flex;
+    flex-direction: row;
+
+    &-image{
+        margin-top: 30px;
+        margin-left: 50px;
+       img{
+           height: 400px;
+       }
+    }
+
+    &-info{
+        margin-top: 30px;
+    }
+}
+
+.return-button{
+    width: 10vw;
+    img{
+        height: 20px;
+        margin-right: 15px;
+    }
+}
+
+.stock-disponible{
+    color: green;
+}
+
+.detail-loader{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 30px;
+}

@@ -42,9 +42,9 @@ export const ItemCount = (props) => {
     return (
         <>
             <div className="item-counter-container">
-                <input type="image" src="./Icons/minusIcon.png" className="counter-button" onClick={handleMinus} />
+                <input type="image" src="../Icons/minusIcon.png" className="counter-button" onClick={handleMinus} />
                 <p>{counter}</p>
-                <input type="image" src="./Icons/plusIcon.png" className="counter-button" onClick={handlePlus} />
+                <input type="image" src="../Icons/plusIcon.png" className="counter-button" onClick={handlePlus} />
             </div>
             <div className="add-button-container">
                 <Button disabled={disableButton} className="add-button" variant="outlined" onClick={handleAdd}>Agregar al carrito!</Button>

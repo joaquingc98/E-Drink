@@ -11,12 +11,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    color: rgb(233, 231, 231);
     margin-right: 20px;
     &-link{
+        color: rgb(233, 231, 231);
         margin-left: 20px;
         margin-top: 15px;
+        :hover{
+            cursor: pointer;
+        }
     }
+}
+.link{
+    text-decoration: none;
 }
 
 .title-container{
