@@ -29,6 +29,12 @@ export const ItemDetail = () => {
         navigate(-1)
     }
 
+    const [amount, setAmount] = useState(0)
+
+    const selectedAmount = (value) =>{
+        setAmount(value)
+    }
+
     return (
         <>
             {
@@ -45,11 +51,12 @@ export const ItemDetail = () => {
                                 </div>
                                 <div className='item-detail-info'>
                                     <h1>{itemDescription.title}</h1>
-                                    <h2>{`$${itemDescription.price}`}</h2>
-                                    <ItemCount stock={itemDescription.stock} />
+                                    <h2>${itemDescription.price}</h2>
+                                    <ItemCount stock={itemDescription.stock} onChange={selectedAmount} />
                                     <p>Marca: {itemDescription.brand}</p>
                                     <p>Pais: {itemDescription.country}</p>
-                                    <p className='stock-disponible'><b>{itemDescription.stock} unidades disponibles</b></p>
+                                    <p className='total-price'>Total: ${itemDescription.price * amount}</p>
+                                    <p className='stock-disponible'><b>{itemDescription.stock - amount} unidades disponibles</b></p>
                                 </div>
                             </div>
 

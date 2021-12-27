@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import Swal from 'sweetalert2'
 
 
-export const ItemCount = (props) => {
+export const ItemCount = ({stock, onChange}) => {
 
     let [counter, setCounter] = useState(0)
     const [disableButton, setDisableButton] = useState(true)
@@ -14,10 +14,11 @@ export const ItemCount = (props) => {
        }else{
            setDisableButton(false)
        }
+       onChange(counter)
     }, [counter])
 
     const handlePlus = () => {
-        if (counter < props.stock) {
+        if (counter < stock) {
             setCounter(counter + 1)
         }
     }
