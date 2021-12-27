@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import Swal from 'sweetalert2'
 import { NavLink } from 'react-router-dom'
+import CartContext from '../context/CartContext'
 
 
-export const ItemCount = ({ stock, onChange }) => {
 
+export const ItemCount = ({itemID ,stock, onChange }) => {
+    
     let [counter, setCounter] = useState(0)
     const [disableButton, setDisableButton] = useState(true)
+    const context = useContext(CartContext)
 
     useEffect(() => {
         if (counter === 0) {
@@ -35,11 +38,12 @@ export const ItemCount = ({ stock, onChange }) => {
             icon: 'success',
             title: 'A beber!',
             text: `Se agregaron ${counter} elementos al carrito`,
-        })
-        setCounter(0)
+        });
+
+        context.addItem(itemID, counter);
+
+        setCounter(0);
     }
-
-
 
     return (
         <>
