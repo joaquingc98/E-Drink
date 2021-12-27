@@ -52,7 +52,7 @@ export const ItemDetail = () => {
                                 <div className='item-detail-info'>
                                     <h1>{itemDescription.title}</h1>
                                     <h2>${itemDescription.price}</h2>
-                                    <ItemCount itemID ={itemDescription.id}stock={itemDescription.stock} onChange={selectedAmount} />
+                                    <ItemCount item={itemDescription} onChange={selectedAmount} />
                                     <p>Marca: {itemDescription.brand}</p>
                                     <p>Pais: {itemDescription.country}</p>
                                     <p className='total-price'>Total: ${itemDescription.price * amount}</p>

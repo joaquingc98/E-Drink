@@ -6,7 +6,7 @@ import CartContext from '../context/CartContext'
 
 
 
-export const ItemCount = ({itemID ,stock, onChange }) => {
+export const ItemCount = ({item, onChange }) => {
     
     let [counter, setCounter] = useState(0)
     const [disableButton, setDisableButton] = useState(true)
@@ -22,7 +22,7 @@ export const ItemCount = ({itemID ,stock, onChange }) => {
     }, [counter])
 
     const handlePlus = () => {
-        if (counter < stock) {
+        if (counter < item.stock) {
             setCounter(counter + 1)
         }
     }
@@ -40,7 +40,7 @@ export const ItemCount = ({itemID ,stock, onChange }) => {
             text: `Se agregaron ${counter} elementos al carrito`,
         });
 
-        context.addItem(itemID, counter);
+        context.addItem(item.id, counter, item.price, item.picture_URL);
 
         setCounter(0);
     }

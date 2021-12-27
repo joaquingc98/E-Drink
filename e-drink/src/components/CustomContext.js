@@ -13,11 +13,13 @@ export const CustomContext = ({children}) => {
         }
     }
 
-    const addItem = (item, quantity) => {
+    const addItem = (item, quantity, price, picture) => {
       if(!isInCart(item)){
           cartArray.push({
              ID: item,
-             amount: quantity
+             amount: quantity,
+             unit_price: price,
+             picture_URL: picture
          })
          console.log(cartArray)
       }else{
@@ -44,7 +46,7 @@ export const CustomContext = ({children}) => {
 
 
     return (
-        <CartContext.Provider value={{addItem, removeItem, clear}}>
+        <CartContext.Provider value={{addItem, removeItem, clear, cartArray}}>
             {children}
         </CartContext.Provider>
     )

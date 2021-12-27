@@ -50,7 +50,9 @@ export const NavBar = () => {
                 </div>
             </div>
             <div className="cart-container">
+            <NavLink to='/cart' className='link' >
                 <CartWidget />
+            </NavLink>
             </div>
         </div>
     )
