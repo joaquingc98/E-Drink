@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### The Proyect
+
+El proyecto E-Drink consta de un E-Commerce de bebidas alcoholicas en el cual el usuario podra facil e intuitivamente comprar bebidas online y recibirlas a domicilio.
+
+### User Guide
+
+El uso de la plataforma es simple, se debe ir a la categoria deseada, seleccionar el producto que se desea comprar, elegir la cantidad y agregarlo al carrito. Una vez que el carrito
+tenga todo lo que el usuario quiera comprar podra pagar a travez de la API de Mercado Pago y recibir el pedido a su domicilio.
