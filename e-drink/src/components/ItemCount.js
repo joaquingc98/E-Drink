@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import Swal from 'sweetalert2'
-import { NavLink } from 'react-router-dom'
 import CartContext from '../context/CartContext'
 
 
 
-export const ItemCount = ({item, onChange }) => {
-    
+export const ItemCount = ({ item, onChange }) => {
+
     let [counter, setCounter] = useState(0)
     const [disableButton, setDisableButton] = useState(true)
     const context = useContext(CartContext)
@@ -53,9 +52,7 @@ export const ItemCount = ({item, onChange }) => {
                 <input type="image" src="../Icons/plusIcon.png" className="counter-button" onClick={handlePlus} />
             </div>
             <div className="add-button-container">
-                <NavLink to='/cart' className='link'>
-                    <Button disabled={disableButton} className="add-button" variant="outlined" onClick={handleAdd}>Agregar al carrito!</Button>
-                </NavLink>
+                <Button disabled={disableButton} className="add-button" variant="outlined" onClick={handleAdd}>Agregar al carrito!</Button>
             </div>
         </>
     )

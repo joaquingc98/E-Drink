@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as products from './producs.json'
 import { ItemCount } from './ItemCount'
 import { Button } from '@mui/material'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { NavLink } from 'react-router-dom'
+import CartContext from '../context/CartContext'
+
 
 export const ItemDetail = () => {
 
@@ -31,16 +35,26 @@ export const ItemDetail = () => {
 
     const [amount, setAmount] = useState(0)
 
-    const selectedAmount = (value) =>{
+    const selectedAmount = (value) => {
         setAmount(value)
     }
+
+    //Chequea que haya items en el cart para renderizar boton de finalizar compra
+    const context = useContext(CartContext)
+
+    const [cartContent, setCartContent] = useState(context.cartArray)
+
+    useEffect(() => {
+       setCartContent(context.cartArray)
+    }, [context.cartArray])
+
 
     return (
         <>
             {
                 loader ?
                     <img className='detail-loader' src='../Icons/drink-loader.gif'></img>
-                    
+
                     :
 
                     itemDescription && (
@@ -59,11 +73,22 @@ export const ItemDetail = () => {
                                     <p className='stock-disponible'><b>{itemDescription.stock - amount} unidades disponibles</b></p>
                                 </div>
                             </div>
-
-                            <Button variant='contained' onClick={goToPreviousPath} className='return-button'>
-                                <img src='../Icons/return-icon.png'></img>
-                                Volver
-                            </Button>
+                            <div className='detail-buttons'>
+                                <Button variant='contained' onClick={goToPreviousPath} className='return-button'>
+                                    <img src='../Icons/return-icon.png'></img>
+                                    Volver
+                                </Button>
+                                { cartContent.length != 0 ? 
+                                <NavLink to='/cart' className='link'>
+                                    <Button variant='contained' color='success' className='return-button'>
+                                        <ShoppingCartIcon fontSize="medium" className='mr-1' />
+                                        Finalizar
+                                    </Button>
+                                </NavLink>
+                                :
+                                <></>
+                                }
+                            </div>
                         </div>
                     )
             }

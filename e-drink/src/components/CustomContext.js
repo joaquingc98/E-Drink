@@ -44,7 +44,6 @@ export const CustomContext = ({children}) => {
     }
 
 
-
     return (
         <CartContext.Provider value={{addItem, removeItem, clear, cartArray}}>
             {children}

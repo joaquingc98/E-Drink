@@ -25,12 +25,12 @@ export const CartWidget = () => {
 
     const context = useContext(CartContext)
 
-    const [cartAmount, setCartAmount] = useState(0)
+    const [cartAmount, setCartAmount] = useState(context.cartArray.length)
 
     useEffect(() => {
       setCartAmount(context.cartArray.length)
-      console.log(cartAmount)
     }, [context.cartArray.length])
+
 
     return (
         <div>
