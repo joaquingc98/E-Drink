@@ -60,3 +60,19 @@
         transform: rotate(180deg);
     }
 }
+
+.cart-no-items-container{
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    img{
+        height: 400px;
+        align-self: center
+    };
+    h1{
+        font-size: 50px;
+        text-align: center;
+    }
+}

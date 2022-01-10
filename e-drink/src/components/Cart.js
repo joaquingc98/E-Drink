@@ -73,9 +73,12 @@ export const Cart = () => {
 
                     </div>
                     :
+                    <div className='cart-no-items-container'>
+                        <img src='./Icons/notFound_icon.png'/>
                     <h1>
-                        Aun no hay items en el carrito!
+                        ¡No se han encontrado items en el carrito!
                     </h1>
+                    </div>
             }
         </div>
     )

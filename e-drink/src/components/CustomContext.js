@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import CartContext from '../context/CartContext'
 
-// let cartArray2 = []
 
 export const CustomContext = ({children}) => {
 
@@ -29,7 +28,6 @@ export const CustomContext = ({children}) => {
             cartArray[duplicateIndex].amount = cartArray[duplicateIndex].amount + quantity
             console.log('DUPLICADO',cartArray)
         }
-        // setCartArray(cartArray2)
         
     }
 
@@ -39,7 +37,6 @@ export const CustomContext = ({children}) => {
         if(index !== -1){
             setCartArray(cartArray.filter(item => item.ID != itemID ))
         }
-        console.log("array",cartArray)
     }
 
     const clear = () => {
