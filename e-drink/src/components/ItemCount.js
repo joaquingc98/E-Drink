@@ -39,7 +39,7 @@ export const ItemCount = ({ item, onChange }) => {
             text: `Se agregaron ${counter} elementos al carrito`,
         });
 
-        context.addItem(item.id, counter, item.price, item.picture_URL);
+        context.addItem(item.id,item.title, counter, item.price, item.picture_URL);
 
         setCounter(0);
     }

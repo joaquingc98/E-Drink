@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CartContext from '../context/CartContext'
+
+// let cartArray2 = []
 
 export const CustomContext = ({children}) => {
 
-    let cartArray = []
+    const [cartArray, setCartArray] = useState([])
 
     const isInCart = (id) => {
         if(cartArray.some(e => e.ID === id)){
@@ -13,36 +15,37 @@ export const CustomContext = ({children}) => {
         }
     }
 
-    const addItem = (item, quantity, price, picture) => {
-      if(!isInCart(item)){
-          cartArray.push({
-             ID: item,
-             amount: quantity,
-             unit_price: price,
-             picture_URL: picture
-         })
-         console.log(cartArray)
-      }else{
-        let duplicateIndex = cartArray.findIndex(e => e.ID === item)
-        cartArray[duplicateIndex].amount = cartArray[duplicateIndex].amount + quantity
-        console.log('DUPLICADO',cartArray)
-      }
-
+    const addItem = (item, title, quantity, price, picture) => {
+        if(!isInCart(item)){
+            setCartArray([...cartArray,{
+                ID: item,
+                title: title,
+                amount: quantity,
+                total_price: price * quantity,
+                picture_URL: picture
+            }])
+        }else{
+            let duplicateIndex = cartArray.findIndex(e => e.ID === item)
+            cartArray[duplicateIndex].amount = cartArray[duplicateIndex].amount + quantity
+            console.log('DUPLICADO',cartArray)
+        }
+        // setCartArray(cartArray2)
+        
     }
 
     const removeItem = (itemID) => {
         let index = cartArray.findIndex(e => e.ID === itemID)
+        console.log(index)
         if(index !== -1){
-            cartArray.splice(index,1)
+            setCartArray(cartArray.filter(item => item.ID != itemID ))
         }
-        console.log(cartArray)
+        console.log("array",cartArray)
     }
 
     const clear = () => {
-        cartArray = []
+        setCartArray([])
         console.log(cartArray)
     }
-
 
     return (
         <CartContext.Provider value={{addItem, removeItem, clear, cartArray}}>
