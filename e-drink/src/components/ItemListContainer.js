@@ -1,34 +1,48 @@
 import React, {useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ItemList } from './ItemList'
-import * as products from './producs.json'
 
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 
 
 export const ItemListContainer = () => {
-    const { id } = useParams()
+    const params = useParams()
+    console.log(params.id)
 
     const [productList, setProductList] = useState(null)
     const [loader, setLoader] = useState(true)
 
-
     useEffect(() => {
+
+        const db = getFirestore();
         setLoader(true)
-        const productListPromise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(products)
-                setLoader(false)
-            }, 2000)
-        })
-        productListPromise.then((res) => { setProductList(id ? res.default.data.filter((data) => data.type === id) : res.default.data) })
-    }, [id])
+
+        const itemsCollection = collection(db, "items");
+        
+        if(params.id){
+            const q = query(collection(db,"items"), where("type", "==", params.id))
+            getDocs(q)
+            .then((snapshot) => {
+                setProductList(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+            setLoader(false)
+            })
+        }else{
+            getDocs(itemsCollection)
+            .then((snapshot) => {
+                setProductList(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+            setLoader(false)
+
+            })
+        }
+
+    }, [params.id])
 
 
     return (
         <div className="list-container">
             {
-                loader ? 
+                loader ?
                 <img className='item-loader' src='../Icons/drink-loader.gif'></img>
                 :
                 <ItemList className="ml-1" data={productList} />
