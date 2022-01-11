@@ -30,7 +30,7 @@ export const Cart = () => {
         if (amountArray.length > 0) {
             setTotalProducts(amountArray.reduce((a, b) => (a + b)))
         }
-        
+
 
 
     }, [context.cartArray])
@@ -45,7 +45,7 @@ export const Cart = () => {
                         </div>
                         <div className='cart-data-container'>
                             <div className='cart-table-container'>
-                                <DenseTable/>
+                                <DenseTable />
                             </div>
                             <div className='cart-price-container'>
                                 <h1>Total del pedido</h1>
@@ -73,11 +73,21 @@ export const Cart = () => {
 
                     </div>
                     :
-                    <div className='cart-no-items-container'>
-                        <img src='./Icons/notFound_icon.png'/>
-                    <h1>
-                        ¡No se han encontrado items en el carrito!
-                    </h1>
+                    <div className="cart-no-items-container" >
+                        <div className='cart-no-items-message-container'>
+                            <img src='./Icons/notFound_icon.png' />
+                            <h1>
+                                ¡No se han encontrado items en el carrito!
+                            </h1>
+                            <div className='no-items-button-container'>
+                            <NavLink to="/" className='link'>
+                                <Button variant='contained' className='no-items-return-button'>
+                                    <img src='../Icons/return-icon.png' className='mr-1'></img>
+                                    Volver a la tienda!
+                                </Button>
+                            </NavLink>
+                            </div>
+                        </div>
                     </div>
             }
         </div>
