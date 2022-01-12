@@ -26,14 +26,12 @@ export const CustomContext = ({children}) => {
         }else{
             let duplicateIndex = cartArray.findIndex(e => e.ID === item)
             cartArray[duplicateIndex].amount = cartArray[duplicateIndex].amount + quantity
-            console.log('DUPLICADO',cartArray)
         }
         
     }
 
     const removeItem = (itemID) => {
         let index = cartArray.findIndex(e => e.ID === itemID)
-        console.log(index)
         if(index !== -1){
             setCartArray(cartArray.filter(item => item.ID != itemID ))
         }
@@ -41,7 +39,6 @@ export const CustomContext = ({children}) => {
 
     const clear = () => {
         setCartArray([])
-        console.log(cartArray)
     }
 
     return (

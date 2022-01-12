@@ -17,7 +17,6 @@ export const ItemList = (props) => {
                 setProducts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))                
             })
         }, [])
-        console.log(products)
 
     return (
         <div className="item-list">

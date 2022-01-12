@@ -46,10 +46,6 @@ export const DenseTable = () => {
         context.removeItem(item)
     }
     
-    // console.log(context)
-    // const context = React.useContext(CartContext)
-
-   
 
     return (
         <TableContainer component={Paper}>

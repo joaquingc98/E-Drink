@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { CustomContext } from './components/CustomContext'
 import { Cart } from './components/Cart';
+import { Order } from './components/Order';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/category/:id" element={<ItemListContainer />} />
           <Route exact path="/item/:id" element={<ItemDetailContainer />} />
           <Route exact path="/cart" element={<Cart />} ></Route>
+          <Route exact path="/order" element={<Order />} ></Route>
         </Routes>
       </BrowserRouter>
     </CustomContext>

@@ -35,6 +35,7 @@ export const Cart = () => {
 
     }, [context.cartArray])
 
+
     return (
         <div>
             {
@@ -53,9 +54,11 @@ export const Cart = () => {
                                 <h3>Unidades Totales: {totalProducts}(u)</h3>
                                 <h2>Total: ${totalPrice}</h2>
                                 <hr />
+                            <NavLink to="/order" className='link'>
                                 <Button variant='contained' color='warning' className='return-button'>
                                     <b>Pagar Ahora</b>
                                 </Button>
+                            </NavLink>
                             </div>
                         </div>
                         <div className='cart-buttons-container'>
@@ -65,10 +68,12 @@ export const Cart = () => {
                                     Seguir Comprando
                                 </Button>
                             </NavLink>
+                            <NavLink to="/order" className='link'>
                             <Button variant='contained' color='success' className='cart-pay-button'>
                                 Pagar Ahora
                                 <img src='../Icons/return-icon.png'></img>
                             </Button>
+                            </NavLink>
                         </div>
 
                     </div>
