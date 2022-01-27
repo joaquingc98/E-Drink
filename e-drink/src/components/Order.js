@@ -9,9 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-
-
 export const Order = () => {
 
     const context = useContext(CartContext)
@@ -82,7 +79,6 @@ export const Order = () => {
 
     // ACTUALIZACION DE STOCK
     useEffect(() => {
-        console.log(orderData)
         if (orderData) {
             for (let i = 0; i < orderData.items.length; i++) {
                 let data = doc(db, "items", orderData.items[i].id)
