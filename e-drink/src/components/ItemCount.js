@@ -41,7 +41,6 @@ export const ItemCount = ({ item, onChange }) => {
 
         context.addItem(item.id,item.title, counter, item.price, item.picture_URL);
 
-        setCounter(0);
     }
 
     return (

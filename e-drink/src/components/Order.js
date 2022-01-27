@@ -20,10 +20,11 @@ export const Order = () => {
 
     const [orderData, setOrderData] = useState(null)
 
+    const [loader, setLoader] = useState(false)
+
     const db = getFirestore()
 
     const navigate = useNavigate()
-
 
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export const Order = () => {
 
         if (priceArray.length > 0) {
             setTotalPrice(priceArray.reduce((a, b) => (a + b)))
-        }else{
+        } else {
             setTotalPrice(0)
         }
 
@@ -45,13 +46,14 @@ export const Order = () => {
     const handleOrder = (e) => {
 
         e.preventDefault()
+        setLoader(true)
 
         // FECHA DEL PEDIDO
         const date = new Date().toLocaleString() + "";
 
         // ORDEN DEL CLIENTE
         const order = {
-            buyer: { name: e.target[0].value, email: e.target[2].value , phone: e.target[4].value, address: e.target[6].value },
+            buyer: { name: e.target[0].value, email: e.target[2].value, phone: e.target[4].value, address: e.target[6].value },
             items: context.cartArray.map(data => ({ id: data.ID, title: data.title, amount: data.amount, price: data.total_price })),
             date: date,
             total: totalPrice
@@ -61,30 +63,34 @@ export const Order = () => {
 
         // CARGA DE ORDEN Y CAPTURA DE ID
         addDoc(data, order).then((res) => {
-            const orderDoc = doc(db,"orders",res.id)
+            const orderDoc = doc(db, "orders", res.id);
             getDoc(orderDoc).then((snapshot) => {
-                setOrderData(snapshot.data())
+                setOrderData(snapshot.data());
             })
-            context.clear()
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Tu orden ha sido cargada!',
+                text: `La recibiras a tu domicilio dentro de las proximas 24hs`,
+                footer: `ID de compra: ${res.id}`
+            });
+
         })
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Tu orden ha sido cargada!',
-            text: `La recibiras a tu domicilio dentro de las proximas 24hs`,
-        });
-        
-        navigate('/')
+
     }
 
     // ACTUALIZACION DE STOCK
     useEffect(() => {
-        if(orderData){
-            for(let i = 0; i < orderData.items.length; i++){
+        console.log(orderData)
+        if (orderData) {
+            for (let i = 0; i < orderData.items.length; i++) {
                 let data = doc(db, "items", orderData.items[i].id)
-                
+
                 getDoc(data).then((snapshot) => {
-                    updateDoc(data, {stock: snapshot.data().stock - orderData.items[i].amount})
+                    updateDoc(data, { stock: snapshot.data().stock - orderData.items[i].amount });
+                    context.clear()
+                    navigate('/');
                 })
             }
         }
@@ -94,56 +100,64 @@ export const Order = () => {
 
     return (
         <div className='order-data-container'>
-            <form onSubmit={handleOrder} className='order-form'>
-                <TextField
-                    id="standard-textarea"
-                    label="Nombre y Apellido"
-                    placeholder="Juan Cruz Ramirez"
-                    multiline
-                    variant="standard"
-                    className="text-field"
-                    required
+            {
+                loader ?
+                    <img className='detail-loader' src='../Icons/drink-loader.gif'></img>
+                    :
+                    <>
 
-                />
-                <TextField
-                    id="standard-textarea"
-                    label="Email"
-                    placeholder="jcramirez@gmail.com"
-                    multiline
-                    variant="standard"
-                    className="text-field"
-                    required
-                />
-                <TextField
-                    id="standard-textarea"
-                    label="Telefono"
-                    placeholder="01112321549"
-                    multiline
-                    variant="standard"
-                    className="text-field"
-                    required
-                />
-                <TextField
-                    id="standard-textarea"
-                    label="Direccion"
-                    placeholder="Chubut 9670"
-                    multiline
-                    variant="standard"
-                    className="text-field"
-                    required
+                        <form onSubmit={handleOrder} className='order-form'>
+                            <TextField
+                                id="standard-textarea"
+                                label="Nombre y Apellido"
+                                placeholder="Juan Cruz Ramirez"
+                                multiline
+                                variant="standard"
+                                className="text-field"
+                                required
 
-                />
-                <Button type='submit' variant='contained' color='success' className='cart-pay-button'>
-                {/* <NavLink to="/" className='link'> */}
-                    confirmar orden
-                    <img src='../Icons/return-icon.png'></img>
-                {/* </NavLink> */}
-                </Button>
-            </form>
-            <div className='order-small-table'>
-                <DenseTable />
-                <h1 className='order-total'>TOTAL A PAGAR: ${totalPrice}</h1>
-            </div>
+                            />
+                            <TextField
+                                id="standard-textarea"
+                                label="Email"
+                                placeholder="jcramirez@gmail.com"
+                                multiline
+                                variant="standard"
+                                className="text-field"
+                                required
+                            />
+                            <TextField
+                                id="standard-textarea"
+                                label="Telefono"
+                                placeholder="01112321549"
+                                multiline
+                                variant="standard"
+                                className="text-field"
+                                required
+                            />
+                            <TextField
+                                id="standard-textarea"
+                                label="Direccion"
+                                placeholder="Chubut 9670"
+                                multiline
+                                variant="standard"
+                                className="text-field"
+                                required
+
+                            />
+                            <Button type='submit' variant='contained' color='success' className='cart-pay-button'>
+                                {/* <NavLink to="/" className='link'> */}
+                                confirmar orden
+                                <img src='../Icons/return-icon.png'></img>
+                                {/* </NavLink> */}
+                            </Button>
+                        </form>
+                        <div className='order-small-table'>
+                            <DenseTable />
+                            <h1 className='order-total'>TOTAL A PAGAR: ${totalPrice}</h1>
+                        </div>
+                    </>
+            }
         </div>
     )
 }

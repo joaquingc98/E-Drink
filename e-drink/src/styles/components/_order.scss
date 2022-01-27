@@ -1,0 +1,24 @@
+.order-data-container{
+    margin-left: 50px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.order-form{
+    display: flex;
+    flex-direction: column;
+   
+    width: 40vw;
+}
+
+.text-field{
+    height: 80px;
+}
+
+.order-small-table{
+    width: 45vw;
+    .order-total{
+        color: #ed662b;
+    }
+}

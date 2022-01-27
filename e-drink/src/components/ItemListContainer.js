@@ -8,7 +8,6 @@ import { collection, getDocs, getFirestore, query, where } from 'firebase/firest
 
 export const ItemListContainer = () => {
     const params = useParams()
-    console.log(params.id)
 
     const [productList, setProductList] = useState(null)
     const [loader, setLoader] = useState(true)
